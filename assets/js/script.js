@@ -44,8 +44,24 @@ function createTaskElement(task){
     const listItem = document.createElement("li");
     // Add task input content to list item
     listItem.textContent = task;
+
+    // Add delete button to task element
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    // Add styles to delete button
+    deleteButton.className = "deleteTask";
+    // Append delete button to list item
+    listItem.appendChild(deleteButton);
+
     // Append new list item to tasklist
     taskList.appendChild(listItem);
+
+    // Add event listener for delete button, so that the current task is deleted when the button is clicked
+    deleteButton.addEventListener("click", function(){
+        taskList.removeChild(listItem);
+        // Save the updated task list to the local storage
+        saveTasks();
+    })
 }
 
 /**
@@ -53,9 +69,10 @@ function createTaskElement(task){
  */
 function saveTasks(){
     // Select all list elements from the task list and save their content in an array
+    // Text content from the delete button gets saved as well, so it gets replaced with ""
     let taskArray = [];
     taskList.querySelectorAll("li").forEach((item) => {
-        taskArray.push(item.textContent.trim());
+        taskArray.push(item.textContent.replace("Delete", "").trim());
     });
 
     // Save taskArray to the local storage
