@@ -41,3 +41,22 @@ li {
 .deleteTask:hover {
     color: darkred;
 }
+
+.taskText {
+    flex-grow: 1;
+    text-align: left;
+    cursor: pointer;
+}
+
+.open {
+    color: black;
+}
+
+.in-progress {
+    color: orange;
+}
+
+/* .done {
+    color: grey;
+    text-decoration: line-through;
+} */

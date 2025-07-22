@@ -35,22 +35,32 @@ function addTask(){
 
 /**
  * Create a new list item with the task input as content and append it to the existing task list.
+ * @param {*} task 
+ * @param {*} status 
+ * @returns listItem
  */
-function createTaskElement(task){
+function createTaskElement(task, status = "open"){
     // Create new list item 
     const listItem = document.createElement("li");
-    // Add task input content to list item
-    listItem.textContent = task;
 
-    // // Add delete button to task element
-    // const deleteButton = document.createElement("button");
-    // deleteButton.textContent = "Delete";
-    // // Add styles to delete button
-    // deleteButton.className = "deleteTask";
+    // Store status like "open" or "in progress"
+    listItem.dataset.status = status; 
+
+    // Create span element with the task input
+    const taskSpan = document.createElement("span");
+    taskSpan.textContent = task;
+    taskSpan.classList.add("taskText");
+
+    // Apply styles depending on the status
+    applyTaskStatusStyles(taskSpan, status);
+
+    // Add task input content to list item
+    listItem.appendChild(taskSpan);
 
     // Add delete icon "X" to task element
     const deleteButton = document.createElement("i");
     deleteButton.className = "fas fa-times deleteTask";
+    // Add title to the button which shows when hovering over the button
     deleteButton.setAttribute("title", "Delete task");
     // Append delete button to list item
     listItem.appendChild(deleteButton);
@@ -58,12 +68,26 @@ function createTaskElement(task){
     // Append new list item to tasklist
     taskList.appendChild(listItem);
 
+    // Add event listener for the task text to toggle the status between open/in-progress when the text is clicked
+    taskSpan.addEventListener("click", () => {
+        const currentStatus = listItem.dataset.status;
+        // Change status from open to in-progress and vice versa
+        const newStatus = currentStatus === "open" ? "in progress" : "open";
+        listItem.dataset.status = newStatus;
+        // Apply styles depending on the status
+        applyTaskStatusStyles(taskSpan, newStatus);
+        // Save the updated task list to the local storage
+        saveTasks();
+    });
+
     // Add event listener for delete button, so that the current task is deleted when the button is clicked
-    deleteButton.addEventListener("click", function(){
+    deleteButton.addEventListener("click", () => {
         taskList.removeChild(listItem);
         // Save the updated task list to the local storage
         saveTasks();
-    })
+    });
+
+    //return listItem; // important for loadTasks()
 }
 
 /**
@@ -71,10 +95,12 @@ function createTaskElement(task){
  */
 function saveTasks(){
     // Select all list elements from the task list and save their content in an array
-    // Text content from the delete button gets saved as well, so it gets replaced with ""
     let taskArray = [];
     taskList.querySelectorAll("li").forEach((item) => {
-        taskArray.push(item.textContent.replace("Delete task", "").trim());
+        const text = item.querySelector(".taskText").textContent;
+        //const status = item.dataset.status || "open";
+        const status = item.dataset.status;
+        taskArray.push({ text, status });
     });
 
     // Save taskArray to the local storage
@@ -88,5 +114,24 @@ function loadTasks(){
     // Get tasks from local storage. If there are no previous tasks stored in the local storage, return an empty array
     const taskArray = JSON.parse(localStorage.getItem("tasks")) || [];
     // Create task elements for each stored task
-    taskArray.forEach(createTaskElement);
+    taskArray.forEach(task => {
+        createTaskElement(task.text, task.status);
+    });
+}
+
+/**
+ * Apply style of task text depending on the status
+ * @param {*} span 
+ * @param {*} status 
+ */
+function applyTaskStatusStyles(span, status) {
+    // Remove prior status class
+    span.classList.remove("open", "in-progress");
+
+    // Add class depending on status
+    if (status === "in progress") {
+        span.classList.add("in-progress");
+    } else {
+        span.classList.add("open");
+    }
 }
