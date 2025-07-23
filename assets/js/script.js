@@ -5,12 +5,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskInput = document.getElementById("taskInput");
     const addButton = document.getElementById("addButton");
     const taskList = document.getElementById("taskList");
+    const resetButton = document.getElementById("resetButton");
     
-    // Load previous task list items
-    loadTasks();
 
     // Add event listener to addButton to add a new task when the button is clicked
     addButton.addEventListener("click", addTask)
+
+    // Add event listener to resetButton to reset task list when the button is clicked
+    resetButton.addEventListener("click", resetTasks)
+
+    
+    // Load previous task list items
+    loadTasks();
 
 })
 
@@ -174,4 +180,12 @@ function applyTaskStatusStyles(span, status) {
     } else {
         span.classList.add("done");
     }
+}
+
+/**
+ * Reset the task list to an empty list
+ */
+function resetTasks(){
+    localStorage.removeItem("tasks");
+    taskList.innerHTML = "";
 }
