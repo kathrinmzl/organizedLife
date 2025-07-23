@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskList = document.getElementById("taskList");
     const resetButton = document.getElementById("resetButton");
 
+    // Add event listener to task input field to add a new task when pressing enter
+    taskInput.addEventListener("keydown", e => e.key === "Enter" && addTask());
+
     // Add event listener to addButton to add a new task when the button is clicked
     addButton.addEventListener("click", addTask);
 
@@ -14,6 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load previous task list items
     loadTasks();
+
+    // Set cursor focus on task input when page is refreshed/loaded
+    taskInput.focus();
 });
 
 /**
