@@ -54,6 +54,9 @@ function createTaskElement(task, status = "open"){
     taskCheckbox.setAttribute("title", "Mark task as done");
     taskCheckbox.className = "taskCheckbox";
 
+    // Set the checkbox to "checked" depending on the status (important for refreshing the page)
+    taskCheckbox.checked = (status === "done");
+
     // Add checkbox to list item
     listItem.appendChild(taskCheckbox);
 
@@ -82,16 +85,37 @@ function createTaskElement(task, status = "open"){
     taskList.appendChild(listItem);
 
     // Event listeners ----------------------------------------------------- //
+    // Add event listener for the checkbox to toggle the status between done and open/in-progress when the checkbox is clicked
+    taskCheckbox.addEventListener("change", () => {
+        // If checkbox is changed to "checked", change the status to "done", otheriwse change it to "open"
+        let newStatus;
+        if(taskCheckbox.checked){
+            newStatus = "done";
+        } else {
+            newStatus = "open";
+        }
+
+        listItem.dataset.status = newStatus;
+
+        // Apply styles depending on the status
+        applyTaskStatusStyles(taskSpan, newStatus);
+        // Save the updated task list to the local storage
+        saveTasks();
+    });
+
     // Add event listener for the task text to toggle the status between open/in-progress when the text is clicked
     taskSpan.addEventListener("click", () => {
         const currentStatus = listItem.dataset.status;
-        // Change status from open to in-progress and vice versa
+        if(["open" , "in-progress"].includes(currentStatus)){
+            // Change status from open to in-progress and vice versa
         const newStatus = currentStatus === "open" ? "in-progress" : "open";
         listItem.dataset.status = newStatus;
         // Apply styles depending on the status
         applyTaskStatusStyles(taskSpan, newStatus);
         // Save the updated task list to the local storage
         saveTasks();
+        }
+        
     });
 
     // Add event listener for delete button, so that the current task is deleted when the button is clicked
