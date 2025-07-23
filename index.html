@@ -10,6 +10,10 @@
 
     <title>Organized Life</title>
 
+    <!-- Add Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
 
@@ -22,6 +26,7 @@
     <!-- Header with page title and intro -->
     <header>
         <div class="container">
+            <i class="fa-regular fa-circle-question questionIcon" data-bs-toggle="modal" data-bs-target="#instructionsModal" title = "Instructions"></i>
             <h1>Organized Life</h1>
             <p>Your personal assistant to keep track of everything you want to do.</p>
         </div>
@@ -34,9 +39,10 @@
             <!-- Task input section -->
             <section class="task-input-section">
                 <h2>I will Organize My Life. Now! </h2> 
+
                 <div>
                     <textarea id="taskInput" placeholder="Add new task here"></textarea>
-                <i id="addButton" class="fa-solid fa-plus"></i>
+                <i id="addButton" class="fa-solid fa-plus" title = "Add task"></i>
                 </div>
                 
             </section>
@@ -53,6 +59,34 @@
         </div>
     </main>
 
+    <!-- Modal -->
+<div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-4" id="instructionsModalLabel">Are you Ready to Organize Your Life?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ol>
+            <li>Write your new task into the text field and add it to your task list by pressing enter or clicking the "+" button.</li>
+            <li>Click on a task in the task list to toggle its status between "open" and "in-progress" (orangered).</li>
+            <li>Click on the checkbox next to a task to it as "done".</li>
+            <li> ... TODO </li>
+            <li>Reset the whole task list by clicking the "Reset all tasks" button.</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK! Let's Go!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
+    </script>
     <!-- Font Awesome for icons -->
     <script src="https://kit.fontawesome.com/5a74a18106.js" crossorigin="anonymous"></script>
 

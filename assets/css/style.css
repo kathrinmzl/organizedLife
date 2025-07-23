@@ -65,6 +65,36 @@ header p {
   margin: 0 auto;
 }
 
+.questionIcon {
+    align-items: right;
+    color: var(--text-color-secondary);
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.questionIcon:hover {
+    color: var(--highlight-color-dark);
+    
+}
+
+#instructionsModalLabel{
+    color: var(--highlight-color);
+}
+
+/* Task List */
+.modal-body ol {
+  padding: 15px;
+}
+
+/* .modal-body li {
+  
+} */
+
+.modal-footer button {
+     background-color: var(--highlight-color);
+  color: var(--text-color-secondary);
+}
+
 /* Task Input Section */
 .task-input-section div {
   display: flex;
@@ -126,12 +156,12 @@ header p {
 }
 
 /* Task List */
-ul {
+#taskList {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+#taskList li {
   display: flex;
   justify-content: space-between;
   align-items: center;
