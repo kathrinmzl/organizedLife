@@ -43,13 +43,25 @@ function createTaskElement(task, status = "open"){
     // Create new list item 
     const listItem = document.createElement("li");
 
-    // Store status like "open" or "in progress"
+    // Store status ("open"/"in-progress"/"done")
     listItem.dataset.status = status; 
 
+    // "Done" Checkbox ----------------------------------------------------- //
+    // Create checkbox input field to mark a task as "done"
+    const taskCheckbox = document.createElement("input");
+    taskCheckbox.setAttribute("type", "checkbox");
+    // Add title to the checkbox which shows when hovering over the checkbox
+    taskCheckbox.setAttribute("title", "Mark task as done");
+    taskCheckbox.className = "taskCheckbox";
+
+    // Add checkbox to list item
+    listItem.appendChild(taskCheckbox);
+
+    // "In-progress" / "open" toggle  ---------------------------------------- //
     // Create span element with the task input
     const taskSpan = document.createElement("span");
     taskSpan.textContent = task;
-    taskSpan.classList.add("taskText");
+    taskSpan.className = "taskText";
 
     // Apply styles depending on the status
     applyTaskStatusStyles(taskSpan, status);
@@ -57,6 +69,7 @@ function createTaskElement(task, status = "open"){
     // Add task input content to list item
     listItem.appendChild(taskSpan);
 
+    // Delete button ----------------------------------------------------- //
     // Add delete icon "X" to task element
     const deleteButton = document.createElement("i");
     deleteButton.className = "fas fa-times deleteTask";
@@ -65,14 +78,15 @@ function createTaskElement(task, status = "open"){
     // Append delete button to list item
     listItem.appendChild(deleteButton);
     
-    // Append new list item to tasklist
+    // Append new list item to tasklist ----------------------------------- //
     taskList.appendChild(listItem);
 
+    // Event listeners ----------------------------------------------------- //
     // Add event listener for the task text to toggle the status between open/in-progress when the text is clicked
     taskSpan.addEventListener("click", () => {
         const currentStatus = listItem.dataset.status;
         // Change status from open to in-progress and vice versa
-        const newStatus = currentStatus === "open" ? "in progress" : "open";
+        const newStatus = currentStatus === "open" ? "in-progress" : "open";
         listItem.dataset.status = newStatus;
         // Apply styles depending on the status
         applyTaskStatusStyles(taskSpan, newStatus);
@@ -126,12 +140,14 @@ function loadTasks(){
  */
 function applyTaskStatusStyles(span, status) {
     // Remove prior status class
-    span.classList.remove("open", "in-progress");
+    span.classList.remove("open", "in-progress", "done");
 
     // Add class depending on status
-    if (status === "in progress") {
+    if (status === "open"){
+        span.classList.add("open");
+    } else if (status === "in-progress") {
         span.classList.add("in-progress");
     } else {
-        span.classList.add("open");
+        span.classList.add("done");
     }
 }
