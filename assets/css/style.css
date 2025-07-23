@@ -34,8 +34,9 @@ body {
   background-blend-mode: screen;
 }
 
-h1 {
+h1, h2 {
     font-family: var(--secondary-font);
+    color: var(--text-color-secondary);
 }
 
 /* Container */
@@ -53,9 +54,8 @@ header {
 }
 
 header h1 {
-  color: var(--text-color-secondary);
   font-size: 2.5rem;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 header p {
@@ -66,7 +66,7 @@ header p {
 }
 
 /* Task Input Section */
-.task-input-section {
+.task-input-section div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -86,13 +86,14 @@ header p {
   font-family: inherit;
   font-size: 1rem;
   box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 #addButton {
   height: fit-content;         /* Adapts better to multiline input */
   padding: 10px 15px;
   margin-bottom: 20px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   border: none;
   background-color: var(--highlight-color);
   color: var(--text-color-secondary);
@@ -102,6 +103,7 @@ header p {
   align-self: flex-start;      /* Keeps button aligned to top of textarea */
 }
 
+
 #addButton:hover {
   background-color: var(--highlight-color-dark);
 }
@@ -110,6 +112,7 @@ header p {
 #resetButton {
   margin-top: 15px;
   padding: 10px 20px;
+  font-size: 1rem;
   border: none;
   background-color: var(--highlight-color);
   color: var(--text-color-secondary);
@@ -192,7 +195,15 @@ li {
     align-items: stretch;
   }
 
+  #taskInput {
+    margin-bottom: 0;
+  }
+
   #addButton {
     width: 100%;
+  }
+
+  #resetButton {
+    background-color: darkred;
   }
 }
