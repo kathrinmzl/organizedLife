@@ -1,42 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-        content="Add desctiption here TODO">
-    <meta name="keywords"
-        content="Add keywords here TODO">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="description" content="Your personal assistant to keep track of everything you want to do." />
+    <meta name="keywords" content="to-do list, task tracker, productivity app" />
 
     <title>Organized Life</title>
 
-    <!-- Custom CSS stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    
-    <!-- Favicon -->
-    <!-- TODO? -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
 
+     <!-- Favicon -->
+    <!-- TODO? -->
 </head>
+
 <body>
 
-    <!-- Basic structure -->
-    <div class="container">
-        <h1>To Do List</h1>
-        <input type="text" id="taskInput" placeholder = "Add task here">
-        <button id="addButton">Add</button>
-        <ul id="taskList">
-            <!-- js creates li items here -->
-        </ul>
-        <button id="resetButton">Reset all tasks</button>
-    </div>
+    <!-- Header with page title and intro -->
+    <header>
+        <div class="container">
+            <h1>Organized Life</h1>
+            <p>Your personal assistant to keep track of everything you want to do.</p>
+        </div>
+    </header>
 
+    <!-- Main area -->
+    <main>
+        <div class="container">
 
-    
-    <!-- Font Awesome kit for using icons -->
+            <!-- Task input section -->
+            <section class="task-input-section">
+                <textarea id="taskInput" placeholder="Add new task here"></textarea>
+                <button id="addButton">Add</button>
+            </section>
+
+            <!-- Task list section -->
+            <section class="task-list-section">
+                <!-- <h2>My Tasks</h2> -->
+                <ul id="taskList">
+                    <!-- JS creates li items here -->
+                </ul>
+                <button id="resetButton">Reset all tasks</button>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Font Awesome for icons -->
     <script src="https://kit.fontawesome.com/5a74a18106.js" crossorigin="anonymous"></script>
 
-    <!-- Load JavaScript file -->
+    <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>
