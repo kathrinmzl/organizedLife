@@ -8,12 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add event listener to task input field to add a new task when pressing enter
     taskInput.addEventListener("keydown", function (e) {
-            if (e.key === "Enter") {
-                e.preventDefault();
-                addTask();
-            }
-        });
-    
+        if (e.key === "Enter") {
+            e.preventDefault();
+            addTask();
+        }
+    });
 
     // Add event listener to addButton to add a new task when the button is clicked
     addButton.addEventListener("click", addTask);
@@ -23,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load previous task list items
     loadTasks();
+
+    // sortTasksByStatus();
 
     // Set cursor focus on task input when page is refreshed/loaded
     taskInput.focus();
@@ -45,6 +46,9 @@ function addTask() {
         // If no task has been entered, alert the user to enter a task
         alert("Please enter a task!");
     }
+
+    // Sort task list when adding a new task
+    sortTasksByStatus();
 }
 
 /**
@@ -113,6 +117,10 @@ function createTaskElement(task, status = "open") {
 
         // Apply styles depending on the status
         applyTaskStatusStyles(taskSpan, newStatus);
+
+        // Sort task list
+        sortTasksByStatus();
+
         // Save the updated task list to the local storage
         saveTasks();
     });
@@ -126,6 +134,10 @@ function createTaskElement(task, status = "open") {
             listItem.dataset.status = newStatus;
             // Apply styles depending on the status
             applyTaskStatusStyles(taskSpan, newStatus);
+
+            // Sort task list
+            sortTasksByStatus();
+
             // Save the updated task list to the local storage
             saveTasks();
         }
@@ -134,6 +146,10 @@ function createTaskElement(task, status = "open") {
     // Add event listener for delete button, so that the current task is deleted when the button is clicked
     deleteButton.addEventListener("click", () => {
         taskList.removeChild(listItem);
+
+        // Sort task list
+        // sortTasksByStatus();
+
         // Save the updated task list to the local storage
         saveTasks();
     });
@@ -153,7 +169,7 @@ function saveTasks() {
         const status = item.dataset.status;
         taskArray.push({
             text,
-            status
+            status,
         });
     });
 
@@ -208,4 +224,28 @@ function resetTasks() {
             taskList.innerHTML = "";
         }
     }
+}
+
+/**
+ * Sort the task list by status in this order: "in-progress" - "open" - "done"
+ */
+function sortTasksByStatus() {
+    // Define a helper function to set the right order for the status types
+    const statusOrder = {
+        "in-progress": 0,
+        "open": 1,
+        "done": 2
+    };
+
+    // Get task list items and store them as an array to be able to access "sort" function
+    const taskArray = Array.from(taskList.querySelectorAll("li"));
+
+    // Sort the taskArray using the numbers 0-2 assigned to the status types in the helper function in ascending order
+    const sorted = taskArray.sort(
+        (a, b) => statusOrder[a.dataset.status] - statusOrder[b.dataset.status]
+    );
+
+    // Clear the old tasklist and assign it the new sorted tasklist
+    taskList.innerHTML = "";
+    sorted.forEach((task) => taskList.appendChild(task));
 }
