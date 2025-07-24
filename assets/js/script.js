@@ -61,7 +61,7 @@ function createTaskElement(task, status = "open") {
     // Create new list item
     const listItem = document.createElement("li");
 
-    // Store status ("open"/"in-progress"/"done")
+    // Store status ("open"/"in-progress"/"done") as data attribute of the listItem
     listItem.dataset.status = status;
 
     // "Done" Checkbox ----------------------------------------------------- //
@@ -105,7 +105,7 @@ function createTaskElement(task, status = "open") {
     // Event listeners ----------------------------------------------------- //
     // Add event listener for the checkbox to toggle the status between done and open/in-progress when the checkbox is clicked
     taskCheckbox.addEventListener("change", () => {
-        // If checkbox is changed to "checked", change the status to "done", otheriwse change it to "open"
+        // If checkbox is changed to "checked", change the status to "done", otherwise change it to "open"
         let newStatus;
         if (taskCheckbox.checked) {
             newStatus = "done";
@@ -226,6 +226,7 @@ function resetTasks() {
     }
 }
 
+// Explanation of sorting functionality: https://www.freecodecamp.org/news/how-to-sort-array-of-objects-by-property-name-in-javascript/
 /**
  * Sort the task list by status in this order: "in-progress" - "open" - "done"
  */
