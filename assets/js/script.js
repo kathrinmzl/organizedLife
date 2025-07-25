@@ -261,12 +261,14 @@ function resetTasks() {
     }
 }
 
-// Explanation of sorting functionality: https://www.freecodecamp.org/news/how-to-sort-array-of-objects-by-property-name-in-javascript/
+// Explanation of sorting functionality: 
+// https://www.freecodecamp.org/news/how-to-sort-array-of-objects-by-property-name-in-javascript/
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 /**
- * Sort the task list by status in this order: "in-progress" - "open" - "done"
+ * Sort the task list by status and deadline, showing most urgent tasks first, and "done" always at the bottom of the list
  */
 function sortTasksByStatus() {
-    // Define a helper function to set the right order for the status types
+    // Define a helper variable to set the right order for the status types
     const statusOrder = {
         "in-progress": 0,
         "open": 1,
@@ -276,10 +278,28 @@ function sortTasksByStatus() {
     // Get task list items and store them as an array to be able to access "sort" function
     const taskArray = Array.from(taskList.querySelectorAll("li"));
 
-    // Sort the taskArray using the numbers 0-2 assigned to the status types in the helper function in ascending order
-    const sorted = taskArray.sort(
-        (a, b) => statusOrder[a.dataset.status] - statusOrder[b.dataset.status]
-    );
+    // Sorting algorithm
+    // negative return value: a should come before b.
+    // positive return value: a should come after b.
+    const sorted = taskArray.sort((a, b) => {
+        // Get the status and deadline per task
+        const statusA = a.dataset.status;
+        const statusB = b.dataset.status;
+        // Transform deadline input to date format, so that it can be sorted
+        const dateA = new Date(a.dataset.deadline);
+        const dateB = new Date(b.dataset.deadline);
+
+        // If one of the tasks is done and the other one isn't, put the "done" task at the end of the list, regardless of date
+        if (statusA === "done" && statusB !== "done") return 1;
+        if (statusA !== "done" && statusB === "done") return -1;
+
+        // If both tasks are not "done", sort them by date
+        const dateDiff = dateA - dateB;
+        if (dateDiff !== 0) return dateDiff;
+
+        // If both tasks have the same date, sort them by status ("in-progress" > "open")
+        return statusOrder[statusA] - statusOrder[statusB];
+    });
 
     // Clear the old tasklist and assign it the new sorted tasklist
     taskList.innerHTML = "";
