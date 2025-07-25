@@ -127,7 +127,7 @@ header p {
   margin-bottom: 20px;
 }
 
-#deadline {
+#deadlineInput {
   width: 140px;
   height: 40px;            
   padding: 10px;
@@ -254,7 +254,7 @@ input::-webkit-calendar-picker-indicator:hover {
     margin-bottom: 0;
   }
 
- #deadline {
+ #deadlineInput {
   display: block;
   margin: 0 auto 0 auto; /* center and space below */
 }

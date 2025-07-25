@@ -2,12 +2,21 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Get DOM Elements
     const taskInput = document.getElementById("taskInput");
+    const deadlineInput = document.getElementById("deadlineInput");
     const addButton = document.getElementById("addButton");
     const taskList = document.getElementById("taskList");
     const resetButton = document.getElementById("resetButton");
 
     // Add event listener to task input field to add a new task when pressing enter
     taskInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            addTask();
+        }
+    });
+
+    // Add event listener to deadline input field to add a new task when pressing enter
+    deadlineInput.addEventListener("keydown", function (e) {
         if (e.key === "Enter") {
             e.preventDefault();
             addTask();
@@ -36,15 +45,25 @@ function addTask() {
     // Get the value from the task input field and trim any white space
     const task = taskInput.value.trim();
 
-    // If task has been entered create a new task list element and clear the input field
-    if (task) {
+    // Get the value from the deadline input field 
+    const deadline = deadlineInput.value;
+
+    // If task has been entered create a new task list element and clear the input fields
+    if (task && deadline) {
         createTaskElement(task);
         taskInput.value = "";
+        deadlineInput.value = "";
         // Save task to local storage
         saveTasks();
-    } else {
+    } else if (task && !deadline) {
+        // If no deadline has been entered, alert the user to enter a deadline
+        alert("Please enter a deadline!");
+    } else if (!task && deadline) {
         // If no task has been entered, alert the user to enter a task
         alert("Please enter a task!");
+    } else {
+        // If no deadline and no deadline have been entered, alert the user to enter a task and deadline
+        alert("Please enter a task and a deadline!");
     }
 
     // Sort task list when adding a new task
