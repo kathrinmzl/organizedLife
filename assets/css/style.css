@@ -51,6 +51,7 @@ h1, h2 {
 header {
   padding: 20px 0;
   text-align: center;
+  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(../images/header-background.jpg) no-repeat center 60% / cover;
 }
 
 header h1 {
@@ -63,6 +64,7 @@ header p {
   font-size: 1.2rem;
   max-width: 600px;
   margin: 0 auto;
+  padding-bottom: 30px;
 }
 
 /* Icon container aligned to top right */
@@ -105,6 +107,11 @@ header p {
 }
 
 /* Task Input Section */
+
+.task-input-section h2 {
+    padding: 20px 0;
+}
+
 .task-input-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -240,6 +247,17 @@ input::-webkit-calendar-picker-indicator:hover {
 .done {
   color: grey;
   text-decoration: line-through;
+}
+
+/* Footer */
+
+#footer i {
+  color: var(--text-color-secondary);
+  font-size: 1.5rem;
+}
+
+#footer i:hover {
+  color: var(--highlight-color);
 }
 
 /* Responsive Layout for small screens */
