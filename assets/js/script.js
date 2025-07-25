@@ -248,14 +248,15 @@ function applyTaskStatusStyles(span, status) {
  */
 function resetTasks() {
     // Only attempt to reset the task list if there are any tasks
-    if (localStorage.length > 0) {
+    if (localStorage.getItem("tasks") != "[]") {
         // Ask the user to confirm the reset
         const userConfirmed = confirm(
             "Are you sure you want to delete all tasks? This cannot be undone."
         );
 
         if (userConfirmed) {
-            localStorage.removeItem("tasks");
+            // localStorage.removeItem("tasks");
+            localStorage.setItem("tasks", "[]");
             taskList.innerHTML = "";
         }
     }
