@@ -1,11 +1,10 @@
 /* Google fonts import */
-/* TODO */
-@import url("https://fonts.googleapis.com/css2?family=Asar&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+US+Modern:wght@100..400&family=Quicksand:wght@300..700&display=swap');
 
 /* CSS Variables */
 :root {
-  --primary-font: "Roboto", sans-serif;
-  --secondary-font: "Asar", cursive;
+  --primary-font: "quicksand", sans-serif;
+  --secondary-font: "playwrite us modern", cursive;
 
   --background-color-primary: #D8F3DC;
   --text-color-primary: #081C15;
@@ -37,6 +36,7 @@ body {
 h1, h2 {
     font-family: var(--secondary-font);
     color: var(--text-color-secondary);
+    line-height: 1.5em;
 }
 
 /* Container */
@@ -56,7 +56,7 @@ header {
 
 header h1 {
   font-size: 2.5rem;
-  /* margin-bottom: 10px; */
+   padding-bottom: 20px; 
 }
 
 header p {
