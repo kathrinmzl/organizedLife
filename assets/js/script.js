@@ -50,7 +50,7 @@ function addTask() {
 
     // If task has been entered create a new task list element and clear the input fields
     if (task && deadline) {
-        createTaskElement(task);
+        createTaskElement(task, deadline);
         taskInput.value = "";
         deadlineInput.value = "";
         // Save task to local storage
@@ -76,12 +76,15 @@ function addTask() {
  * @param {*} status
  * @returns listItem
  */
-function createTaskElement(task, status = "open") {
+function createTaskElement(task, deadline, status = "open") {
     // Create new list item
     const listItem = document.createElement("li");
 
     // Store status ("open"/"in-progress"/"done") as data attribute of the listItem
     listItem.dataset.status = status;
+
+    // Store deadline as data attribute of the listItem
+    listItem.dataset.deadline = deadline;
 
     // "Done" Checkbox ----------------------------------------------------- //
     // Create checkbox input field to mark a task as "done"
@@ -97,17 +100,28 @@ function createTaskElement(task, status = "open") {
     // Add checkbox to list item
     listItem.appendChild(taskCheckbox);
 
-    // "In-progress" / "open" toggle  ---------------------------------------- //
-    // Create span element with the task input
+    // Task text incl. deadline ------------------------------------------- //
+    // Create deadline span
+    const deadlineSpan = document.createElement("span");
+    deadlineSpan.textContent = `${deadline}: `;
+    deadlineSpan.className = "deadlineText";
+
+    // Create span element with the deadline and task input text
     const taskSpan = document.createElement("span");
     taskSpan.textContent = task;
     taskSpan.className = "taskText";
 
+    // deadline +task
+    const deadlineTaskSpan = document.createElement("span");
+    deadlineTaskSpan.className = "deadlineTaskText";
+    deadlineTaskSpan.appendChild(deadlineSpan);
+    deadlineTaskSpan.appendChild(taskSpan);
+
     // Apply styles depending on the status
-    applyTaskStatusStyles(taskSpan, status);
+    applyTaskStatusStyles(deadlineTaskSpan, status);
 
     // Add task input content to list item
-    listItem.appendChild(taskSpan);
+    listItem.appendChild(deadlineTaskSpan);
 
     // Delete button ----------------------------------------------------- //
     // Add delete icon "X" to task element
@@ -135,7 +149,7 @@ function createTaskElement(task, status = "open") {
         listItem.dataset.status = newStatus;
 
         // Apply styles depending on the status
-        applyTaskStatusStyles(taskSpan, newStatus);
+        applyTaskStatusStyles(deadlineTaskSpan, newStatus);
 
         // Sort task list
         sortTasksByStatus();
@@ -145,14 +159,14 @@ function createTaskElement(task, status = "open") {
     });
 
     // Add event listener for the task text to toggle the status between open/in-progress when the text is clicked
-    taskSpan.addEventListener("click", () => {
+    deadlineTaskSpan.addEventListener("click", () => {
         const currentStatus = listItem.dataset.status;
         if (["open", "in-progress"].includes(currentStatus)) {
             // Change status from open to in-progress and vice versa
             const newStatus = currentStatus === "open" ? "in-progress" : "open";
             listItem.dataset.status = newStatus;
             // Apply styles depending on the status
-            applyTaskStatusStyles(taskSpan, newStatus);
+            applyTaskStatusStyles(deadlineTaskSpan, newStatus);
 
             // Sort task list
             sortTasksByStatus();
@@ -186,8 +200,10 @@ function saveTasks() {
         const text = item.querySelector(".taskText").textContent;
         //const status = item.dataset.status || "open";
         const status = item.dataset.status;
+        const deadline = item.dataset.deadline;
         taskArray.push({
             text,
+            deadline,
             status,
         });
     });
@@ -204,7 +220,7 @@ function loadTasks() {
     const taskArray = JSON.parse(localStorage.getItem("tasks")) || [];
     // Create task elements for each stored task
     taskArray.forEach((task) => {
-        createTaskElement(task.text, task.status);
+        createTaskElement(task.text, task.deadline, task.status);
     });
 }
 

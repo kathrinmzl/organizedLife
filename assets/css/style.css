@@ -196,7 +196,7 @@ input::-webkit-calendar-picker-indicator:hover {
 }
 
 /* Task Content */
-.taskText {
+.deadlineTaskText {
   flex-grow: 1;
   text-align: left;
   cursor: pointer;
