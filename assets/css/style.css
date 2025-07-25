@@ -105,7 +105,7 @@ header p {
 }
 
 /* Task Input Section */
-.task-input-section div {
+.task-input-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -117,19 +117,34 @@ header p {
   flex: 1;
   min-width: 200px;
   max-width: 500px;
-  min-height: 60px;            /* Slightly more vertical space for multiline input */
+  min-height: 40px;           
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
   resize: vertical;            /* Allows manual resizing */
-  font-family: inherit;
   font-size: 1rem;
   box-sizing: border-box;
   margin-bottom: 20px;
 }
 
+#deadline {
+  width: 140px;
+  height: 40px;            
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  /* cursor: pointer;  */
+  margin-bottom: 20px;
+}
+
+/* cursor: pointor only appears when hovering over the calendar icon of the date input */
+input::-webkit-calendar-picker-indicator:hover {
+  cursor: pointer;
+}
+
 #addButton {
-  height: fit-content;         /* Adapts better to multiline input */
+  height: 40px;         
   padding: 10px 15px;
   margin-bottom: 20px;
   font-size: 1.2rem;
@@ -227,16 +242,22 @@ header p {
   text-decoration: line-through;
 }
 
-/* Responsive Layout */
-@media (max-width: 500px) {
-  .task-input-section {
+/* Responsive Layout for small screens */
+@media (max-width: 576px) {
+  .task-input-wrapper {
     flex-direction: column;
     align-items: stretch;
   }
 
   #taskInput {
+    width: 100%;
     margin-bottom: 0;
   }
+
+ #deadline {
+  display: block;
+  margin: 0 auto 0 auto; /* center and space below */
+}
 
   #addButton {
     width: 100%;

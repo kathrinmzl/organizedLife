@@ -43,9 +43,11 @@
             <section class="task-input-section">
                 <h2>I will Organize My Life. Now! </h2>
 
-                <div>
+                <div class = "task-input-wrapper">
                     <textarea id="taskInput" placeholder="Add new task here"></textarea>
-                    <i id="addButton" class="fa-solid fa-plus" title="Add task"></i>
+                    <!-- onkeydown property prevents that date can be typed in using the keyboard -->
+                    <input type="date" name="deadline" id="deadline" onkeydown="return false" title = "Choose deadline by clicking the calendar icon">
+                    <i id="addButton" class="fa-solid fa-plus" title="Add task to list"></i>
                 </div>
 
             </section>
