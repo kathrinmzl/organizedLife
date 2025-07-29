@@ -6,9 +6,9 @@
   --primary-font: "quicksand", sans-serif;
   --secondary-font: "playwrite us modern", cursive;
 
-  --background-color-primary: #D8F3DC;
-  --text-color-primary: #081C15;
-  --text-color-secondary: white;
+  --background-color-primary: #D8F3DC; /* task list background */
+  --text-color-dark: #081C15; /* dark text color for lighter background */
+  --text-color-light: white; /* light text color for darker background */
 
   --highlight-color: #1B4332;
   --highlight-color-dark: #081C15;
@@ -26,7 +26,7 @@
 
 body {
   font-family: var(--primary-font), sans-serif;
-  color: var(--text-color-primary);
+  color: var(--text-color-dark);
   min-height: 100vh;
   background: linear-gradient(var(--html-background-color-primary), transparent),
               linear-gradient(to top left, var(--html-background-color-secondary), transparent);
@@ -35,7 +35,7 @@ body {
 
 h1, h2 {
     font-family: var(--secondary-font);
-    color: var(--text-color-secondary);
+    color: var(--text-color-light);
     line-height: 1.5em;
 }
 
@@ -60,7 +60,7 @@ header h1 {
 }
 
 header p {
-  color: var(--text-color-secondary);
+  color: var(--text-color-light);
   font-size: 1.2rem;
   max-width: 600px;
   margin: 0 auto;
@@ -77,19 +77,19 @@ header p {
 }
 
 .questionIcon {
-  color: var(--text-color-secondary);
+  color: var(--text-color-light);
   cursor: pointer;
   font-size: 1.5rem;
   transition: color 0.2s ease;
 }
 
 .questionIcon:hover {
-    color: var(--highlight-color-dark);
+    color: var(--highlight-color);
     
 }
 
 #instructionsModalLabel{
-    color: var(--highlight-color);
+    color: var(--text-color-dark);
 }
 
 /* Task List */
@@ -103,7 +103,12 @@ header p {
 
 .modal-footer button {
      background-color: var(--highlight-color);
-  color: var(--text-color-secondary);
+  color: var(--text-color-light);
+}
+
+
+.modal-footer button:hover {
+  background-color: var(--highlight-color-dark);
 }
 
 /* Task Input Section */
@@ -157,7 +162,7 @@ input::-webkit-calendar-picker-indicator:hover {
   font-size: 1.2rem;
   border: none;
   background-color: var(--highlight-color);
-  color: var(--text-color-secondary);
+  color: var(--text-color-light);
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -176,7 +181,7 @@ input::-webkit-calendar-picker-indicator:hover {
   font-size: 1rem;
   border: none;
   background-color: var(--highlight-color);
-  color: var(--text-color-secondary);
+  color: var(--text-color-light);
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -237,7 +242,7 @@ input::-webkit-calendar-picker-indicator:hover {
 
 /* Status Classes */
 .open {
-  color: var(--text-color-primary);
+  color: var(--text-color-dark);
 }
 
 .in-progress {
@@ -252,7 +257,7 @@ input::-webkit-calendar-picker-indicator:hover {
 /* Footer */
 
 #footer i {
-  color: var(--text-color-secondary);
+  color: var(--text-color-light);
   font-size: 1.5rem;
 }
 
