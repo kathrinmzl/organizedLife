@@ -1,17 +1,14 @@
-/* Google fonts import */
+/* Google fonts import ------------------------------------------- */
 @import url("https://fonts.googleapis.com/css2?family=Playwrite+US+Modern:wght@100..400&family=Quicksand:wght@300..700&display=swap");
 
-/* CSS Variables */
+/* CSS Variables ------------------------------------------------- */
 :root {
     --primary-font: "quicksand", sans-serif;
     --secondary-font: "playwrite us modern", cursive;
 
-    --background-color-primary: #d8f3dc;
-    /* task list background */
-    --text-color-dark: #081c15;
-    /* dark text color for lighter background */
-    --text-color-light: white;
-    /* light text color for darker background */
+    --background-color-primary: #d8f3dc; /* task list background */
+    --text-color-dark: #081c15; /* dark text color for lighter background */
+    --text-color-light: white; /* light text color for darker background */
 
     --highlight-color: #1b4332;
     --highlight-color-dark: #081c15;
@@ -20,21 +17,15 @@
     --html-background-color-secondary: #52b788;
 }
 
-/* Global Reset & Body */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+/* General styles ------------------------------------------------ */
 body {
-    font-family: var(--primary-font), sans-serif;
+    font-family: var(--primary-font);
     color: var(--text-color-dark);
     min-height: 100vh;
-    background: linear-gradient(var(--html-background-color-primary), transparent),
-        linear-gradient(to top left,
-            var(--html-background-color-secondary),
-            transparent);
+    /* Background style inspired by https://blog.logrocket.com/advanced-effects-with-css-background-blend-modes-4b750198522a/) */
+    background: 
+        linear-gradient(var(--html-background-color-primary), transparent),
+        linear-gradient(to top left, var(--html-background-color-secondary), transparent);
     background-blend-mode: screen;
 }
 
@@ -45,19 +36,18 @@ h2 {
     line-height: 1.5em;
 }
 
-/* Container */
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
-    /* border: solid; */
 }
 
-/* Header */
+/* Header ----------------------------------------------------------- */
 header {
     padding: 20px 0;
     text-align: center;
+    /* Background image with dark layer added on top of it to improve readability of text */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url(../images/header-background.jpg) no-repeat center 60% / cover;
 }
@@ -75,8 +65,9 @@ header p {
     padding-bottom: 30px;
 }
 
+/* Instructions Icon/Modal ------------------------------------------ */ 
 /* Icon container aligned to top right */
-.header-icon-container {
+.instructions-icon-container {
     display: flex;
     justify-content: flex-end;
     padding: 0 20px;
@@ -84,14 +75,14 @@ header p {
     margin: 0 auto;
 }
 
-.questionIcon {
+.instructions-icon {
     color: var(--text-color-light);
     cursor: pointer;
     font-size: 1.5rem;
     transition: color 0.2s ease;
 }
 
-.questionIcon:hover {
+.instructions-icon:hover {
     color: var(--highlight-color);
 }
 
@@ -99,14 +90,9 @@ header p {
     color: var(--text-color-dark);
 }
 
-/* Task List */
 .modal-body ol {
     padding: 15px;
 }
-
-/* .modal-body li {
-  
-} */
 
 .modal-footer button {
     background-color: var(--highlight-color);
@@ -117,8 +103,7 @@ header p {
     background-color: var(--highlight-color-dark);
 }
 
-/* Task Input Section */
-
+/* Task input section -------------------------------------------- */
 .task-input-section h2 {
     padding: 20px 0;
 }
@@ -131,6 +116,7 @@ header p {
     margin-top: 20px;
 }
 
+/* Task input field */
 #taskInput {
     flex: 1;
     min-width: 200px;
@@ -139,13 +125,13 @@ header p {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    resize: vertical;
-    /* Allows manual resizing */
+    resize: vertical; /* Allows manual resizing */
     font-size: 1rem;
     box-sizing: border-box;
     margin-bottom: 20px;
 }
 
+/* Deadline input field */
 #deadlineInput {
     width: 140px;
     height: 40px;
@@ -153,7 +139,6 @@ header p {
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 1rem;
-    /* cursor: pointer;  */
     margin-bottom: 20px;
 }
 
@@ -162,6 +147,7 @@ input::-webkit-calendar-picker-indicator:hover {
     cursor: pointer;
 }
 
+/* Add button */
 #addButton {
     height: 40px;
     padding: 10px 15px;
@@ -173,31 +159,15 @@ input::-webkit-calendar-picker-indicator:hover {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    align-self: flex-start;
-    /* Keeps button aligned to top of textarea */
+    align-self: flex-start; /* Keeps button aligned to top of textarea */
 }
 
 #addButton:hover {
     background-color: var(--highlight-color-dark);
 }
 
-#resetButton {
-    margin-top: 15px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    background-color: var(--highlight-color);
-    color: var(--text-color-light);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-#resetButton:hover {
-    background-color: darkred;
-}
-
-/* Task List */
+/* Task list section -------------------------------------------- */
+/* General task list styles */
 #taskList {
     list-style-type: none;
     padding: 0;
@@ -213,13 +183,7 @@ input::-webkit-calendar-picker-indicator:hover {
     border-radius: 5px;
 }
 
-/* Task Content */
-.deadlineTaskText {
-    flex-grow: 1;
-    text-align: left;
-    cursor: pointer;
-}
-
+/* Task list item content */
 /* Task Checkbox */
 .taskCheckbox {
     margin-right: 10px;
@@ -231,6 +195,13 @@ input::-webkit-calendar-picker-indicator:hover {
 
 .taskCheckbox:hover {
     accent-color: darkgreen;
+}
+
+/* Deadline Text */
+.deadlineTaskText {
+    flex-grow: 1;
+    text-align: left;
+    cursor: pointer;
 }
 
 /* Delete Icon */
@@ -260,18 +231,24 @@ input::-webkit-calendar-picker-indicator:hover {
     text-decoration: line-through;
 }
 
-/* Footer */
-
-#footer i {
+/* Reset button ------------------------------------------------- */
+#resetButton {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: var(--highlight-color);
     color: var(--text-color-light);
-    font-size: 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-#footer i:hover {
-    color: var(--highlight-color);
+#resetButton:hover {
+    background-color: darkred;
 }
 
-/* Scroll button */
+/* Scroll button ------------------------------------------------ */
 #scrollButton {
     display: none;
     position: fixed;
@@ -296,8 +273,19 @@ input::-webkit-calendar-picker-indicator:hover {
     border-color: var(--highlight-color);
 }
 
-/* Responsive Layout for small screens */
+/* Footer ----------------------------------------------------- */
+#footer i {
+    color: var(--text-color-light);
+    font-size: 1.5rem;
+}
+
+#footer i:hover {
+    color: var(--highlight-color);
+}
+
+/* Responsive layout for small screens */
 @media (max-width: 576px) {
+    /* Show task input section element in column */
     .task-input-wrapper {
         flex-direction: column;
         align-items: stretch;
@@ -310,8 +298,7 @@ input::-webkit-calendar-picker-indicator:hover {
 
     #deadlineInput {
         display: block;
-        margin: 0 auto 0 auto;
-        /* center and space below */
+        margin: 0 auto 0 auto; /* center and space below */
     }
 
     #addButton {
@@ -322,7 +309,6 @@ input::-webkit-calendar-picker-indicator:hover {
         background-color: darkred;
     }
 
-    /* Scroll button */
     #scrollButton {
         font-size: 1rem;
         padding: 12px;

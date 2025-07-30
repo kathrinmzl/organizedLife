@@ -197,14 +197,9 @@ function createTaskElement(task, deadline, status = "open") {
     deleteButton.addEventListener("click", () => {
         taskList.removeChild(listItem);
 
-        // Sort task list
-        // sortTasksByStatus();
-
         // Save the updated task list to the local storage
         saveTasks();
     });
-
-    //return listItem; // important for loadTasks()
 }
 
 /**
