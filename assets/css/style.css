@@ -90,8 +90,12 @@ header p {
     color: var(--text-color-dark);
 }
 
-.modal-body ol {
-    padding: 15px;
+.modal-content {
+    background: var(--background-color-primary);
+}
+
+.modal-body ol, ul {
+    padding: 0 25px;
 }
 
 .modal-footer button {
