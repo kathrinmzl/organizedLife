@@ -30,7 +30,7 @@
     <header>
         <div class="instructions-icon-container">
             <i class="fa-regular fa-circle-question instructions-icon" data-bs-toggle="modal"
-                data-bs-target="#instructionsModal" title="Instructions"></i>
+                data-bs-target="#instructionsModal" title="Instructions" aria-label="Open instructions modal"></i>
         </div>
         <div class="container">
             <h1>Organized Life</h1>
@@ -50,8 +50,8 @@
                     <textarea id="taskInput" placeholder="Add new task here"></textarea>
                     <!-- onkeydown property prevents that date can be typed in using the keyboard -->
                     <input type="date" name="deadline" id="deadlineInput" onkeydown="return false"
-                        title="Choose deadline by clicking the calendar icon">
-                    <i id="addButton" class="fa-solid fa-plus" title="Add task to list"></i>
+                        title="Choose deadline by clicking the calendar icon" aria-label="Choose deadline">
+                    <i id="addButton" class="fa-solid fa-plus" title="Add task to list" aria-label="Add task to list"></i>
                 </div>
 
             </section>
@@ -65,7 +65,7 @@
             </section>
 
             <!-- Scroll button -->
-            <i id="scrollButton" class="fa-solid fa-arrow-up" title="Scroll up"></i>
+            <i id="scrollButton" class="fa-solid fa-arrow-up" title="Scroll up" aria-label="Scroll up"></i>
         </div>
     </main>
 
@@ -108,7 +108,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
     </script>
-    
+
     <!-- Font Awesome for icons -->
     <script src="https://kit.fontawesome.com/5a74a18106.js" crossorigin="anonymous"></script>
 

@@ -109,6 +109,7 @@ function createTaskElement(task, deadline, status = "open") {
     taskCheckbox.setAttribute("type", "checkbox");
     // Add title to the checkbox which shows when hovering over the checkbox
     taskCheckbox.setAttribute("title", "Mark task as done");
+    taskCheckbox.setAttribute("aria-label", "Mark task as done");
     taskCheckbox.className = "taskCheckbox";
 
     // Set the checkbox to "checked" depending on the status (important for refreshing the page)
@@ -128,7 +129,7 @@ function createTaskElement(task, deadline, status = "open") {
     taskSpan.textContent = task;
     taskSpan.className = "taskText";
 
-    // deadline +task
+    // deadline + task
     const deadlineTaskSpan = document.createElement("span");
     deadlineTaskSpan.className = "deadlineTaskText";
     deadlineTaskSpan.appendChild(deadlineSpan);
@@ -146,6 +147,7 @@ function createTaskElement(task, deadline, status = "open") {
     deleteButton.className = "fas fa-times deleteTask";
     // Add title to the button which shows when hovering over the button
     deleteButton.setAttribute("title", "Delete task");
+    deleteButton.setAttribute("aria-label", "Delete task");
     // Append delete button to list item
     listItem.appendChild(deleteButton);
 
