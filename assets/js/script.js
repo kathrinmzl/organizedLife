@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (e.key === "Enter") {
             e.preventDefault();
             addTask();
+            // Set cursor focus back on task input field
+    taskInput.focus();
         }
     });
 
@@ -20,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (e.key === "Enter") {
             e.preventDefault();
             addTask();
+            // Set cursor focus back on task input field
+    taskInput.focus();
         }
     });
 
