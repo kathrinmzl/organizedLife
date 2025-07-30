@@ -28,10 +28,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Add event listener to addButton to add a new task when the button is clicked
-    addButton.addEventListener("click", addTask);
+    addButton.addEventListener("click", function (e) {
+        addTask();
+        // Set cursor focus back on task input field
+        taskInput.focus();
+        });
 
     // Add event listener to resetButton to reset task list when the button is clicked
-    resetButton.addEventListener("click", resetTasks);
+    resetButton.addEventListener("click",  function (e) {
+        resetTasks();
+        // Set cursor focus back on task input field
+        taskInput.focus();
+        });
 
     // Load previous task list items
     loadTasks();
