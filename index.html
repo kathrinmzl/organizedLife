@@ -19,10 +19,11 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-16x16.png">
-    </head>
+</head>
 
 <!-- Classes on body set to work with mt-auto on the footer to ensure it always stays at the 
  bottom of the page -->
+
 <body class="d-flex flex-column min-vh-100">
 
     <!-- Header with page title and intro -->
@@ -42,13 +43,14 @@
         <div class="container">
 
             <!-- Task input section -->
-            <section class="task-input-section">
+            <section class="task-input-section" id="task-input-section">
                 <h2>I will Organize My Life. Now! </h2>
 
-                <div class = "task-input-wrapper">
+                <div class="task-input-wrapper">
                     <textarea id="taskInput" placeholder="Add new task here"></textarea>
                     <!-- onkeydown property prevents that date can be typed in using the keyboard -->
-                    <input type="date" name="deadline" id="deadlineInput" onkeydown="return false" title = "Choose deadline by clicking the calendar icon">
+                    <input type="date" name="deadline" id="deadlineInput" onkeydown="return false"
+                        title="Choose deadline by clicking the calendar icon">
                     <i id="addButton" class="fa-solid fa-plus" title="Add task to list"></i>
                 </div>
 
@@ -56,23 +58,24 @@
 
             <!-- Task list section -->
             <section class="task-list-section">
-                <!-- <h2>My Tasks</h2> -->
                 <ul id="taskList">
                     <!-- JS creates li items here -->
                 </ul>
                 <button id="resetButton">Reset all tasks</button>
             </section>
 
+            <!-- Scroll button -->
+            <i id="scrollButton" class="fa-solid fa-arrow-up" title="Scroll up"></i>
         </div>
     </main>
 
     <footer id="footer" class="mt-auto">
         <div class="container">
             <a href="https://github.com/kathrinmzl/organizedLife" target="_blank" rel="noopener"
-                            aria-label="Visit the GitHub repository for this project (opens in new tab)"><i
-                                class="fa-brands fa-github" title = "Visit GitHub repository for this project"></i></a>
+                aria-label="Visit the GitHub repository for this project (opens in new tab)"><i
+                    class="fa-brands fa-github" title="Visit GitHub repository for this project"></i></a>
         </div>
-</footer>
+    </footer>
 
     <!-- Modal -->
     <div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel"

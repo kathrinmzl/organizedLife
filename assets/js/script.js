@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const addButton = document.getElementById("addButton");
     const taskList = document.getElementById("taskList");
     const resetButton = document.getElementById("resetButton");
+    const scrollButton = document.getElementById("scrollButton");
 
     // Add event listener to task input field to add a new task when pressing enter
     taskInput.addEventListener("keydown", function (e) {
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             addTask();
             // Set cursor focus back on task input field
-    taskInput.focus();
+            taskInput.focus();
         }
     });
 
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             addTask();
             // Set cursor focus back on task input field
-    taskInput.focus();
+            taskInput.focus();
         }
     });
 
@@ -32,19 +33,23 @@ document.addEventListener("DOMContentLoaded", function () {
         addTask();
         // Set cursor focus back on task input field
         taskInput.focus();
-        });
+    });
 
     // Add event listener to resetButton to reset task list when the button is clicked
-    resetButton.addEventListener("click",  function (e) {
+    resetButton.addEventListener("click", function (e) {
         resetTasks();
         // Set cursor focus back on task input field
         taskInput.focus();
-        });
+    });
 
     // Load previous task list items
     loadTasks();
 
-    // sortTasksByStatus();
+    // Add event listener to scrollButton so that it only appears when scrolling down
+    window.addEventListener("scroll", scrollFunction);
+
+    // Add event listener to scrollButton to scroll to top when clicked
+    scrollButton.addEventListener("click", topFunction);
 
     // Set cursor focus on task input when page is refreshed/loaded
     taskInput.focus();
@@ -317,4 +322,35 @@ function sortTasksByStatus() {
     // Clear the old tasklist and assign it the new sorted tasklist
     taskList.innerHTML = "";
     sorted.forEach((task) => taskList.appendChild(task));
+}
+
+// Basic code of scroll-to-top functionality from:
+// https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
+/**
+ * Show the scroll button when the user scrolls past the top of the task-input-section
+ */
+function scrollFunction() {
+    const targetElement = document.getElementById("task-input-section");
+    const targetOffsetTop = targetElement.offsetTop;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > targetOffsetTop) {
+        scrollButton.style.display = "block";
+    } else {
+        scrollButton.style.display = "none";
+    }
+}
+
+// Basic code of scroll-to-top functionality from:
+// https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
+/**
+ * Scroll to the top of the task-input-section when the scrollButton is clicked
+ */
+function topFunction() {
+    const target = document.getElementById("task-input-section"); 
+    if (target) {
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
 }
