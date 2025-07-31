@@ -84,7 +84,7 @@ header p {
 }
 
 .instructions-icon:hover {
-    color: var(--highlight-color);
+    color: var(--background-color-primary);
 }
 
 #instructionsModalLabel {
