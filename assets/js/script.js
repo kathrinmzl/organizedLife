@@ -11,6 +11,9 @@ const scrollButton = document.getElementById("scrollButton");
 // Wait for the DOM to finish loading before running the code
 document.addEventListener("DOMContentLoaded", function () {
 
+    // Set the min attribute of the deadline input to "today" so that users cannot input a deadline from the past
+    deadlineInput.min = new Date().toISOString().split("T")[0];
+
     // Add event listener to task input field to add a new task when pressing enter
     taskInput.addEventListener("keydown", function (e) {
         if (e.key === "Enter") {
