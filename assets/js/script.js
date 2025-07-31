@@ -1,14 +1,15 @@
 /* jshint esversion: 11 */
 
+// Get DOM Elements (define them globally so that they can be accessed by all functions and don't throw a warning/error in JSHint)
+const taskInput = document.getElementById("taskInput");
+const deadlineInput = document.getElementById("deadlineInput");
+const addButton = document.getElementById("addButton");
+const taskList = document.getElementById("taskList");
+const resetButton = document.getElementById("resetButton");
+const scrollButton = document.getElementById("scrollButton");
+
 // Wait for the DOM to finish loading before running the code
 document.addEventListener("DOMContentLoaded", function () {
-    // Get DOM Elements
-    const taskInput = document.getElementById("taskInput");
-    const deadlineInput = document.getElementById("deadlineInput");
-    const addButton = document.getElementById("addButton");
-    const taskList = document.getElementById("taskList");
-    const resetButton = document.getElementById("resetButton");
-    const scrollButton = document.getElementById("scrollButton");
 
     // Add event listener to task input field to add a new task when pressing enter
     taskInput.addEventListener("keydown", function (e) {
@@ -346,7 +347,7 @@ function scrollFunction() {
  * Scroll to the top of the task-input-section when the scrollButton is clicked
  */
 function topFunction() {
-    const target = document.getElementById("task-input-section"); 
+    const target = document.getElementById("task-input-section");
     if (target) {
         target.scrollIntoView({
             behavior: "smooth",
