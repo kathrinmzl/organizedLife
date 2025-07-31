@@ -1,3 +1,5 @@
+/* jshint esversion: 11 */
+
 // Wait for the DOM to finish loading before running the code
 document.addEventListener("DOMContentLoaded", function () {
     // Get DOM Elements
@@ -90,6 +92,7 @@ function addTask() {
 /**
  * Create a new list item with the task input as content and append it to the existing task list.
  * @param {*} task
+ * @param {*} deadline
  * @param {*} status
  * @returns listItem
  */
