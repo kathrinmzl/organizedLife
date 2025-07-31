@@ -271,18 +271,18 @@ input::-webkit-calendar-picker-indicator:hover {
     color: var(--text-color-light);
     cursor: pointer;
     font-size: 1.5rem;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, background-color 0.2s ease;
     background-color: var(--highlight-color);
     padding: 13px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    border: solid transparent 2px;
 }
 
 #scrollButton:hover {
     background-color: var(--text-color-light);
     color: var(--text-color-dark);
-    border: solid;
     border-color: var(--highlight-color);
 }
 
