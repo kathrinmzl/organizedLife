@@ -29,8 +29,10 @@
     <!-- Header with page title and intro -->
     <header>
         <div class="instructions-icon-container">
-            <i class="fa-regular fa-circle-question instructions-icon" data-bs-toggle="modal"
-                data-bs-target="#instructionsModal" title="Instructions" aria-label="Open instructions modal"></i>
+            <!-- Always place icon inside "a" tag if it's supposed to be a link so that you can add an aria-label-->
+            <a href="#" aria-label="Open instructions modal" data-bs-toggle="modal" data-bs-target="#instructionsModal">
+                <i class="fa-regular fa-circle-question instructions-icon" title="Instructions"></i>
+            </a>
         </div>
         <div class="container">
             <h1>Organized Life</h1>
@@ -51,7 +53,9 @@
                     <!-- onkeydown property prevents that date can be typed in using the keyboard -->
                     <input type="date" name="deadline" id="deadlineInput" onkeydown="return false"
                         title="Choose deadline by clicking the calendar icon" aria-label="Choose deadline">
-                    <i id="addButton" class="fa-solid fa-plus" title="Add task to list" aria-label="Add task to list"></i>
+                    <a href="#" aria-label="Add task to list">
+                        <i id="addButton" class="fa-solid fa-plus" title="Add task to list"></i>
+                    </a>
                 </div>
 
             </section>
@@ -66,7 +70,10 @@
             </section>
 
             <!-- Scroll button -->
-            <i id="scrollButton" class="fa-solid fa-arrow-up" title="Scroll up" aria-label="Scroll up"></i>
+            <a href="#" aria-label="Scroll up">
+                <i id="scrollButton" class="fa-solid fa-arrow-up" title="Scroll up"></i>
+            </a>
+            
         </div>
     </main>
 
@@ -89,18 +96,23 @@
                 </div>
                 <div class="modal-body">
                     <ol>
-                        <li>Write your new task into the text field and choose a deadline by using the calendar input. To add the new task to your task list press <b>Enter</b> or
+                        <li>Write your new task into the text field and choose a deadline by using the calendar input.
+                            To add the new task to your task list press <b>Enter</b> or
                             click the <b>+</b> button</li>
-                        <li>When you start working on a task, you can click on it to change its status to <i>in-progress</i>
+                        <li>When you start working on a task, you can click on it to change its status to
+                            <i>in-progress</i>
                             (orangered). Clicking it again sets it back to <i>open</i></li>
                         <li>Clicking on the checkbox next to a task marks it as <i>done</i>. Yay!</li>
                         <li>If you want to delete a task from your tasklist permanently, click on the red <b>X</b></li>
-                        <li>If you want to start fresh and delete your whole tasklist permanently, click the <b>Reset all tasks</b> button</li>
+                        <li>If you want to start fresh and delete your whole tasklist permanently, click the <b>Reset
+                                all tasks</b> button</li>
                     </ol>
                     <p><b>Good to know:</b></p>
                     <ul>
-                        <li>Tasks are primarily sorted by their <i>deadline</i>, with the most urgent tasks appearing at the top of the list.
-                            When a task’s status is changed to <i>in-progress</i>, it is moved to the top of its date bracket. 
+                        <li>Tasks are primarily sorted by their <i>deadline</i>, with the most urgent tasks appearing at
+                            the top of the list.
+                            When a task’s status is changed to <i>in-progress</i>, it is moved to the top of its date
+                            bracket.
                             Tasks marked as <i>done</i> are automatically moved to the bottom of the entire list</li>
                         <li>All tasks are stored on the website until you manually delete them</li>
                     </ul>
