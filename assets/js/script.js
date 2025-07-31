@@ -8,6 +8,9 @@ const taskList = document.getElementById("taskList");
 const resetButton = document.getElementById("resetButton");
 const scrollButton = document.getElementById("scrollButton");
 
+// Get root variables from CSS script
+const rootStyles = getComputedStyle(document.documentElement);
+
 // Wait for the DOM to finish loading before running the code
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -182,6 +185,9 @@ function createTaskElement(task, deadline, status = "open") {
 
         // Save the updated task list to the local storage
         saveTasks();
+
+        // Adjust style for overdue tasks
+        styleOverdueTasks(listItem, listItem.dataset.deadline, newStatus);
     });
 
     // Add event listener for the task text to toggle the status between open/in-progress when the text is clicked
@@ -209,6 +215,10 @@ function createTaskElement(task, deadline, status = "open") {
         // Save the updated task list to the local storage
         saveTasks();
     });
+
+    // Adjust style for overdue tasks
+    styleOverdueTasks(listItem, deadline, status);
+
 }
 
 /**
@@ -326,6 +336,29 @@ function sortTasksByStatus() {
     // Clear the old tasklist and assign it the new sorted tasklist
     taskList.innerHTML = "";
     sorted.forEach((task) => taskList.appendChild(task));
+}
+
+/**
+ * Change background color of overdue tasks, but only if they are not "done" yet
+ * @param {*} listItem 
+ * @param {*} deadline 
+ * @param {*} status 
+ */
+function styleOverdueTasks(listItem, deadline, status) {
+    // Get today's date and the deadline in the same format
+    const today = new Date().setHours(0, 0, 0, 0);
+    const taskDeadline = new Date(deadline).setHours(0, 0, 0, 0);
+
+    // Change style only if task is overdue
+    if (taskDeadline < today) {
+        // If status is not done yet, set a different background color
+        if (status != "done") {
+            listItem.style.backgroundColor = rootStyles.getPropertyValue('--background-color-overdue').trim();
+        } else {
+            // If task is done yet, set normal background color
+            listItem.style.backgroundColor = rootStyles.getPropertyValue('--background-color-primary').trim();
+        }
+    }
 }
 
 // Basic code of scroll-to-top functionality from:

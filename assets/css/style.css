@@ -7,6 +7,7 @@
     --secondary-font: "playwrite us modern", cursive;
 
     --background-color-primary: #d8f3dc; /* task list background */
+    --background-color-overdue: #ecdad5 ;/* task list background for overdue tasks */
     --text-color-dark: #081c15; /* dark text color for lighter background */
     --text-color-light: white; /* light text color for darker background */
 
@@ -230,10 +231,12 @@ input::-webkit-calendar-picker-indicator:hover {
 /* Status Classes */
 .open {
     color: var(--text-color-dark);
+    font-weight: 500;
 }
 
 .in-progress {
-    color: orangered;
+    color: #B10606;
+    font-weight: 500;
 }
 
 .done {
