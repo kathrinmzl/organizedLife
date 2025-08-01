@@ -296,7 +296,33 @@ input::-webkit-calendar-picker-indicator:hover {
     color: var(--highlight-color);
 }
 
-/* Responsive layout for small screens */
+/* 404 page --------------------------------------------------- */
+.not-found-page {
+    background-color: var(--background-color-primary);
+}
+
+.not-found-page h1, h2 {
+    color: var(--text-color-dark);
+}
+.back-home-button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: var(--highlight-color);
+    color: var(--text-color-light);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.back-home-button:hover {
+  background-color: var(--highlight-color-dark);
+  color: var(--text-color-light);
+
+}
+
+/* Responsive layout for small screens ------------------------ */
 @media (max-width: 576px) {
     /* Show task input section element in column */
     .task-input-wrapper {
