@@ -183,6 +183,13 @@ input::-webkit-calendar-picker-indicator:hover {
     cursor: pointer;
 }
 
+#deadlineLabel {
+    height: 40px;
+    line-height: 40px;
+    color: var(--text-color-light);
+    font-weight: 500;
+}
+
 /* Add button */
 #addButton {
     height: 40px;
@@ -400,6 +407,12 @@ input::-webkit-calendar-picker-indicator:hover {
     #deadlineInput {
         display: block;
         margin: 0 auto 0 auto; /* center and space below */
+    }
+
+    /* Change height for deadlineLabel so there is less space between the input elements */
+    #deadlineLabel {
+        height: 20px;
+        line-height: 20px;
     }
 
     #addButton {
