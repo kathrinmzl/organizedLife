@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
- * Take the task input and add a new task to the task list or throw and alert, if no task input has been provided.
+ * Take the task and deadline input and add a new task to the task list or throw and alert, if no task and/or deadline input has been provided.
  */
 function addTask() {
     // Get the value from the task input field and trim any white space
@@ -97,7 +97,7 @@ function addTask() {
 }
 
 /**
- * Create a new list item with the task input as content and append it to the existing task list.
+ * Create a new list item with a checkbox, the deadline, the task input and a delete icon as content and append it to the existing task list.
  * @param {*} task
  * @param {*} deadline
  * @param {*} status
@@ -164,7 +164,7 @@ function createTaskElement(task, deadline, status = "open") {
     // Append new list item to tasklist ----------------------------------- //
     taskList.appendChild(listItem);
 
-    // Event listeners ----------------------------------------------------- //
+    // Event listeners ---------------------------------------------------- //
     // Add event listener for the checkbox to toggle the status between done and open/in-progress when the checkbox is clicked
     taskCheckbox.addEventListener("change", () => {
         // If checkbox is changed to "checked", change the status to "done", otherwise change it to "open"
@@ -218,7 +218,6 @@ function createTaskElement(task, deadline, status = "open") {
 
     // Adjust style for overdue tasks
     styleOverdueTasks(listItem, deadline, status);
-
 }
 
 /**
@@ -229,7 +228,6 @@ function saveTasks() {
     let taskArray = [];
     taskList.querySelectorAll("li").forEach((item) => {
         const text = item.querySelector(".taskText").textContent;
-        //const status = item.dataset.status || "open";
         const status = item.dataset.status;
         const deadline = item.dataset.deadline;
         taskArray.push({
